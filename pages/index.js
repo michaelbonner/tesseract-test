@@ -61,10 +61,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="max-w-7xl mx-auto py-12 grid gap-y-8 px-4 lg:px-8">
+      <main className="mx-auto py-12 grid gap-y-8 px-4 lg:px-8">
         <h1 className="text-3xl">Tesseract Test</h1>
 
-        {progress < 1 && (
+        {progress < 1 && progress > 0 && (
           <div className={`w-full max-w-md`}>
             <label className="block w-full" htmlFor="processing">
               Processing image progress:
@@ -98,7 +98,7 @@ export default function Home() {
             </div>
             {uploadedFileDisplayUrl && (
               <div className="relative">
-                {progress < 1 && (
+                {progress < 1 && progress > 0 && (
                   <div className="absolute inset-0 flex justify-center items-center">
                     <span
                       className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-gray-500 hover:bg-gray-400 transition ease-in-out duration-150 cursor-not-allowed"
@@ -133,14 +133,22 @@ export default function Home() {
             )}
           </div>
           <div
-            className={`py-4 px-8 bg-gray-100 border-gray-200 rounded whitespace-pre-line ${
-              !text && "animate-pulse"
-            }`}
+            className={`py-4 px-8 bg-gray-100 border-gray-200 rounded whitespace-pre-line`}
           >
             {text && (
               <h3 className="font-medium text-xl mb-6">Recognized Text</h3>
             )}
-            {text || "Processing..."}
+            {progress < 1 && progress > 0 && (
+              <h3 className="font-medium text-xl mb-6 animate-pulse">
+                Processing...
+              </h3>
+            )}
+            {!text && !uploadedFile && (
+              <h3 className="font-medium text-xl mb-6">
+                Select an image to view the OCR text
+              </h3>
+            )}
+            {text}
           </div>
         </div>
       </main>
