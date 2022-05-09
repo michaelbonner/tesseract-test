@@ -90,12 +90,21 @@ export default function Home() {
                 Upload image:
               </label>
               <input
+                accept="image/png, image/jpeg"
                 className="block w-full"
                 type="file"
                 id="file"
                 onChange={(e) => {
-                  setUploadedFile(e.target.files[0]);
-                  getUrlFromFile(e.target.files[0]);
+                  if (
+                    event.currentTarget.files[0] &&
+                    (event.currentTarget.files[0].type === "image/jpeg" ||
+                      event.currentTarget.files[0].type === "image/png")
+                  ) {
+                    setUploadedFile(e.target.files[0]);
+                    getUrlFromFile(e.target.files[0]);
+                  } else {
+                    alert("Unsupported file type");
+                  }
                 }}
               />
             </div>
