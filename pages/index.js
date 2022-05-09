@@ -65,7 +65,7 @@ export default function Home() {
     }
     const reader = new FileReader();
     reader.onload = function (e) {
-      setUploadedFileDisplayUrl(e.target.result);
+      setUploadedFileDisplayUrl(event.target.result);
     };
     reader.readAsDataURL(file);
   }
@@ -94,14 +94,14 @@ export default function Home() {
                 className="block w-full"
                 type="file"
                 id="file"
-                onChange={(e) => {
+                onChange={(event) => {
                   if (
                     event.currentTarget.files[0] &&
                     (event.currentTarget.files[0].type === "image/jpeg" ||
                       event.currentTarget.files[0].type === "image/png")
                   ) {
-                    setUploadedFile(e.target.files[0]);
-                    getUrlFromFile(e.target.files[0]);
+                    setUploadedFile(event.target.files[0]);
+                    getUrlFromFile(event.target.files[0]);
                   } else {
                     alert("Unsupported file type");
                   }
