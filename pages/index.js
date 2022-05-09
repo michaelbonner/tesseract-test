@@ -147,9 +147,9 @@ export default function Home() {
                 <div className="relative">
                   {(tesseractStatus === "working" ||
                     tesseractStatus === "setup") && (
-                    <div className="absolute inset-0 flex justify-center items-center bg-white dark:bg-gray-400 bg-opacity-50">
+                    <div className="absolute inset-0 flex justify-center items-center bg-white dark:bg-gray-400 bg-opacity-50 dark:bg-opacity-50">
                       <span
-                        className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-gray-500 bg-opacity-100"
+                        className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-gray-500"
                         disabled=""
                       >
                         <svg
