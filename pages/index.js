@@ -69,6 +69,9 @@ export default function Home() {
               !text && "animate-pulse"
             }`}
           >
+            {text && (
+              <h3 className="font-medium text-xl mb-6">Recognized Text</h3>
+            )}
             {text || "Processing..."}
           </div>
         </div>
