@@ -9,9 +9,8 @@ export default function Home() {
 
   useEffect(() => {
     const worker = createWorker({
-      logger: (m) => {
-        console.log("m", m);
-        setProgress(m?.progress);
+      logger: (workerData) => {
+        setProgress(workerData?.progress || 0);
       },
     });
 
@@ -36,11 +35,18 @@ export default function Home() {
       </Head>
 
       <main className="max-w-7xl mx-auto py-12 grid gap-y-8 px-4 lg:px-8">
-        <h1 className="text-xl">Tesseract Test</h1>
+        <h1 className="text-3xl">Tesseract Test</h1>
 
-        <div>
-          <label htmlFor="processing">Processing progress:</label>
-          <progress id="processing" value={progress} max="1">
+        <div className="w-full max-w-md">
+          <label className="block w-full" htmlFor="processing">
+            Processing image progress:
+          </label>
+          <progress
+            className="block w-full"
+            id="processing"
+            value={progress}
+            max="1"
+          >
             {Math.ceil(progress * 100)}%{" "}
           </progress>
         </div>
