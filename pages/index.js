@@ -71,22 +71,34 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-50">
       <Head>
-        <title>Tesseract Test</title>
+        <title>OCR | Michael Bonner</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
 
       <main className="mx-auto py-12 grid gap-y-8 px-4 lg:px-8">
-        <h1 className="text-3xl">Tesseract Test</h1>
+        <h1 className="text-3xl">Image OCR Tool</h1>
+        <p className="max-w-xl">
+          This tool uses{" "}
+          <a
+            className="underline"
+            href="https://github.com/tesseract-ocr/tesseract"
+          >
+            Tesseract
+          </a>{" "}
+          to scan the uploaded image and detect English characters. Your images
+          are never sent to a third party; all the processing happens as a web
+          worker on your browser.
+        </p>
 
         <div className="grid lg:grid-cols-2 rounded border">
           <div>
             <div className="py-4 px-8 grid gap-y-8">
               <div className="flex flex-wrap items-center gap-4">
                 <label
-                  className="text-base font-medium text-gray-700 whitespace-nowrap"
+                  className="text-base font-medium whitespace-nowrap"
                   htmlFor="file"
                 >
                   Upload image
@@ -117,16 +129,16 @@ export default function Home() {
                 }`}
               >
                 <div className="flex justify-between mb-1">
-                  <span className="text-base font-medium text-gray-700">
+                  <span className="text-base font-medium">
                     Processing image
                   </span>
-                  <span className="text-sm font-medium text-gray-700">{`${Math.ceil(
+                  <span className="text-sm font-medium">{`${Math.ceil(
                     progress * 100
                   )}%`}</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2.5">
+                <div className="w-full bg-gray-200 dark:bg-gray-900 rounded-full h-2.5">
                   <div
-                    className="bg-gray-600 h-2.5 rounded-full"
+                    className="bg-gray-600 dark:bg-gray-400 h-2.5 rounded-full"
                     style={{ width: `${Math.ceil(progress * 100)}%` }}
                   ></div>
                 </div>
@@ -135,7 +147,7 @@ export default function Home() {
                 <div className="relative">
                   {(tesseractStatus === "working" ||
                     tesseractStatus === "setup") && (
-                    <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-50">
+                    <div className="absolute inset-0 flex justify-center items-center bg-white dark:bg-gray-400 bg-opacity-50">
                       <span
                         className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-gray-500 bg-opacity-100"
                         disabled=""
@@ -174,7 +186,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className={`py-4 px-8 bg-gray-100 border-gray-200 rounded whitespace-pre-line`}
+            className={`py-4 px-8 bg-gray-100 dark:bg-gray-700 border-gray-200 rounded whitespace-pre-line`}
           >
             {text && (
               <h3 className="font-medium text-xl mb-6">Recognized Text</h3>
