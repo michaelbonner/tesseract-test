@@ -19,21 +19,6 @@ export default function Home() {
     const worker = createWorker({
       logger: (workerData) => {
         if (
-          workerData.status === "loading tesseract core" ||
-          workerData.status === "initializing tesseract" ||
-          workerData.status === "initialized api" ||
-          workerData.status === "loading language traineddata" ||
-          workerData.status === "loading language traineddata (from cache)" ||
-          workerData.status === "initializing api" ||
-          workerData.status === "initialized tesseract" ||
-          workerData.status === "loaded language traineddata" ||
-          workerData.status === "initialized api"
-        ) {
-          setTesseractStatus("setup");
-          return;
-        }
-
-        if (
           workerData.status === "recognizing text" &&
           workerData.progress < 1
         ) {
@@ -51,9 +36,7 @@ export default function Home() {
           return;
         }
 
-        console.log("workerData.status", workerData.status);
-
-        setTesseractStatus("initial");
+        setTesseractStatus("setup");
       },
     });
 
@@ -97,30 +80,13 @@ export default function Home() {
       <main className="mx-auto py-12 grid gap-y-8 px-4 lg:px-8">
         <h1 className="text-3xl">Tesseract Test</h1>
 
-        <div
-          className={`w-full max-w-md transition-opacity ${
-            tesseractStatus === "working" || tesseractStatus === "setup"
-              ? "opacity-100"
-              : "opacity-0"
-          }`}
-        >
-          <label className="block w-full" htmlFor="processing">
-            Processing image progress:
-          </label>
-          <progress
-            className="block w-full"
-            id="processing"
-            value={progress}
-            max="1"
-          >
-            {Math.ceil(progress * 100)}%
-          </progress>
-        </div>
-
         <div className="grid lg:grid-cols-2 rounded border">
           <div className="py-4 px-8 grid gap-y-8">
-            <div>
-              <label className="block w-full" htmlFor="file">
+            <div className="flex items-center gap-4">
+              <label
+                className="text-base font-medium text-gray-700 whitespace-nowrap"
+                htmlFor="file"
+              >
                 Upload image:
               </label>
               <input
@@ -132,6 +98,28 @@ export default function Home() {
                   getUrlFromFile(e.target.files[0]);
                 }}
               />
+            </div>
+            <div
+              className={`w-full transition-opacity ${
+                tesseractStatus === "working" || tesseractStatus === "setup"
+                  ? "opacity-100"
+                  : "opacity-0"
+              }`}
+            >
+              <div className="flex justify-between mb-1">
+                <span className="text-base font-medium text-gray-700">
+                  Processing image
+                </span>
+                <span className="text-sm font-medium text-gray-700">{`${Math.ceil(
+                  progress * 100
+                )}%`}</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2.5">
+                <div
+                  className="bg-gray-600 h-2.5 rounded-full"
+                  style={{ width: `${Math.ceil(progress * 100)}%` }}
+                ></div>
+              </div>
             </div>
             {uploadedFileDisplayUrl && (
               <div className="relative">
@@ -168,7 +156,7 @@ export default function Home() {
                 )}
                 <img
                   alt="Uploaded file"
-                  className="m-auto"
+                  className="m-auto max-h-[70vh]"
                   src={uploadedFileDisplayUrl}
                 />
               </div>
