@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createWorker } from "tesseract.js";
 
 export default function Home() {
+  const [tesseractStatus, setTesseractStatus] = useState("initial");
   const [progress, setProgress] = useState(0);
   const [text, setText] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -17,9 +18,42 @@ export default function Home() {
     setProgress(0);
     const worker = createWorker({
       logger: (workerData) => {
-        if (workerData.status === "recognizing text") {
-          setProgress(workerData?.progress || 0);
+        if (
+          workerData.status === "loading tesseract core" ||
+          workerData.status === "initializing tesseract" ||
+          workerData.status === "initialized api" ||
+          workerData.status === "loading language traineddata" ||
+          workerData.status === "loading language traineddata (from cache)" ||
+          workerData.status === "initializing api" ||
+          workerData.status === "initialized tesseract" ||
+          workerData.status === "loaded language traineddata" ||
+          workerData.status === "initialized api"
+        ) {
+          setTesseractStatus("setup");
+          return;
         }
+
+        if (
+          workerData.status === "recognizing text" &&
+          workerData.progress < 1
+        ) {
+          setTesseractStatus("working");
+          setProgress(workerData.progress);
+          return;
+        }
+
+        if (
+          workerData.status === "recognizing text" &&
+          workerData.progress === 1
+        ) {
+          setTesseractStatus("done");
+          setProgress(0);
+          return;
+        }
+
+        console.log("workerData.status", workerData.status);
+
+        setTesseractStatus("initial");
       },
     });
 
@@ -63,21 +97,25 @@ export default function Home() {
       <main className="mx-auto py-12 grid gap-y-8 px-4 lg:px-8">
         <h1 className="text-3xl">Tesseract Test</h1>
 
-        {progress < 1 && progress > 0 && (
-          <div className={`w-full max-w-md`}>
-            <label className="block w-full" htmlFor="processing">
-              Processing image progress:
-            </label>
-            <progress
-              className="block w-full"
-              id="processing"
-              value={progress}
-              max="1"
-            >
-              {Math.ceil(progress * 100)}%{" "}
-            </progress>
-          </div>
-        )}
+        <div
+          className={`w-full max-w-md transition-opacity ${
+            tesseractStatus === "working" || tesseractStatus === "setup"
+              ? "opacity-100"
+              : "opacity-0"
+          }`}
+        >
+          <label className="block w-full" htmlFor="processing">
+            Processing image progress:
+          </label>
+          <progress
+            className="block w-full"
+            id="processing"
+            value={progress}
+            max="1"
+          >
+            {Math.ceil(progress * 100)}%
+          </progress>
+        </div>
 
         <div className="grid lg:grid-cols-2 rounded border">
           <div className="py-4 px-8 grid gap-y-8">
@@ -97,10 +135,11 @@ export default function Home() {
             </div>
             {uploadedFileDisplayUrl && (
               <div className="relative">
-                {progress < 1 && progress > 0 && (
-                  <div className="absolute inset-0 flex justify-center items-center">
+                {(tesseractStatus === "working" ||
+                  tesseractStatus === "setup") && (
+                  <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-50">
                     <span
-                      className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-gray-500 hover:bg-gray-400 transition ease-in-out duration-150 cursor-not-allowed"
+                      className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-gray-500 bg-opacity-100"
                       disabled=""
                     >
                       <svg
@@ -127,7 +166,11 @@ export default function Home() {
                     </span>
                   </div>
                 )}
-                <img alt="Uploaded file" src={uploadedFileDisplayUrl} />
+                <img
+                  alt="Uploaded file"
+                  className="m-auto"
+                  src={uploadedFileDisplayUrl}
+                />
               </div>
             )}
           </div>
@@ -137,7 +180,7 @@ export default function Home() {
             {text && (
               <h3 className="font-medium text-xl mb-6">Recognized Text</h3>
             )}
-            {progress < 1 && progress > 0 && (
+            {(tesseractStatus === "working" || tesseractStatus === "setup") && (
               <h3 className="font-medium text-xl mb-6 animate-pulse">
                 Processing...
               </h3>
