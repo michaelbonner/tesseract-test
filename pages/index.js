@@ -82,16 +82,15 @@ export default function Home() {
 
         <div className="grid lg:grid-cols-2 rounded border">
           <div className="py-4 px-8 grid gap-y-8">
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <label
                 className="text-base font-medium text-gray-700 whitespace-nowrap"
                 htmlFor="file"
               >
-                Upload image:
+                Upload image
               </label>
               <input
                 accept="image/png, image/jpeg"
-                className="block w-full"
                 type="file"
                 id="file"
                 onChange={(event) => {
