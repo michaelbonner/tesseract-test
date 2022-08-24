@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { createWorker } from "tesseract.js";
+import Tesseract from "tesseract.js";
 
 export default function Home() {
   const [tesseractStatus, setTesseractStatus] = useState("initial");
@@ -16,47 +16,17 @@ export default function Home() {
     }
     setText("");
     setProgress(0);
-    const worker = createWorker({
+    setTesseractStatus("working");
+
+    Tesseract.recognize(uploadedFile, "eng", {
       logger: (workerData) => {
-        if (
-          workerData.status === "recognizing text" &&
-          workerData.progress < 1
-        ) {
-          setTesseractStatus("working");
-          setProgress(workerData.progress);
-          return;
-        }
-
-        if (
-          workerData.status === "recognizing text" &&
-          workerData.progress === 1
-        ) {
-          setTesseractStatus("done");
-          setProgress(0);
-          return;
-        }
-
-        setTesseractStatus("setup");
+        console.log(workerData);
       },
-    });
-
-    (async () => {
-      await worker.load();
-      await worker.loadLanguage("eng");
-      await worker.initialize("eng");
-      const {
-        data: { text },
-      } = await worker.recognize(uploadedFile);
+    }).then(({ data: { text } }) => {
+      setProgress(1);
       setText(text);
-
-      await worker.terminate();
-    })();
-
-    return () => {
-      (async () => {
-        await worker.terminate();
-      })();
-    };
+      setTesseractStatus("done");
+    });
   }, [uploadedFile]);
 
   function getUrlFromFile(file) {
