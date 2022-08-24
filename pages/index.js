@@ -74,6 +74,7 @@ export default function Home() {
                   Upload image
                 </label>
                 <input
+                  className="w-full"
                   accept="image/png, image/jpeg"
                   type="file"
                   id="file"
