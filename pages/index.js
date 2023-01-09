@@ -81,6 +81,7 @@ export default function Home() {
                   type="file"
                   id="file"
                   onChange={(event) => {
+                    if (event.currentTarget.files.length === 0) return;
                     if (
                       event.currentTarget.files[0] &&
                       (event.currentTarget.files[0].type === "image/jpeg" ||
