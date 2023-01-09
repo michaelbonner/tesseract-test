@@ -65,7 +65,7 @@ export default function Home() {
           worker on your browser.
         </p>
 
-        <div className="grid lg:grid-cols-2 rounded border">
+        <div className="grid lg:grid-cols-2 rounded border min-h-[50vh]">
           <div>
             <div className="py-4 px-8 grid gap-y-8">
               <div className="flex flex-wrap items-center gap-4">
@@ -178,6 +178,27 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <footer className="mx-auto py-12 px-4 lg:px-8 flex flex-wrap gap-x-8 gap-y-2 justify-between text-sm">
+        <p>
+          &copy; {new Date().getFullYear()}
+          {` `}
+          <a
+            className="underline underline-offset-2"
+            href="https://michaelbonner.dev/"
+          >
+            Michael Bonner
+          </a>{" "}
+        </p>
+        <p>
+          Repo Link:{" "}
+          <a
+            className="underline underline-offset-2"
+            href="https://github.com/michaelbonner/tesseract-test"
+          >
+            michaelbonner/tesseract-test
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
