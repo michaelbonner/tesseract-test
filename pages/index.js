@@ -20,7 +20,9 @@ export default function Home() {
 
     Tesseract.recognize(uploadedFile, "eng", {
       logger: (workerData) => {
-        console.log(workerData);
+        if (workerData.status === "recognizing text" && workerData.progress) {
+          setProgress((progress) => Math.max(progress, workerData.progress));
+        }
       },
     }).then(({ data: { text } }) => {
       setProgress(1);
