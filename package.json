@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "million": "^3.0.6",
-    "next": "^14.1.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "babel-plugin-react-compiler": "^0.0.0-experimental-592953e-20240517",
+    "next": "^15.0.0-rc.0",
+    "react": "^19.0.0-rc-935180c7e0-20240524",
+    "react-dom": "^19.0.0-rc-935180c7e0-20240524",
     "tesseract.js": "^5.0.5"
   },
   "devDependencies": {
