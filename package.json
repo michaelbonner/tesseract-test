@@ -9,17 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "babel-plugin-react-compiler": "^0.0.0-experimental-592953e-20240517",
+    "babel-plugin-react-compiler": "^0.0.0-experimental-696af53-20240625",
     "next": "^15.0.0-rc.0",
     "react": "^19.0.0-rc-935180c7e0-20240524",
     "react-dom": "^19.0.0-rc-935180c7e0-20240524",
-    "tesseract.js": "^5.0.5"
+    "tesseract.js": "^5.1.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.18",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.1.3",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1"
+    "eslint-config-next": "^14.2.4",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4"
   }
 }
