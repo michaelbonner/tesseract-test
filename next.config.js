@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    reactCompiler: true,
-  },
+  experimental: {},
   i18n: {
     locales: ["en-US"],
     defaultLocale: "en-US",
