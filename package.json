@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/functions": "^1.4.2",
     "babel-plugin-react-compiler": "^0.0.0-experimental-fe484b5-20240912",
     "next": "15.0.0-rc.1",
     "react": "19.0.0-rc-cd22717c-20241013",
