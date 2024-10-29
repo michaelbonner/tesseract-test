@@ -48,14 +48,14 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-50">
+    <div className="min-h-screen text-gray-700 bg-white dark:text-gray-50 dark:bg-gray-800">
       <Head>
         <title>OCR | Michael Bonner</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
 
-      <main className="mx-auto py-12 grid gap-y-8 px-4 lg:px-8">
+      <main className="grid gap-y-8 py-12 px-4 mx-auto lg:px-8">
         <h1 className="text-3xl">Image OCR Tool</h1>
         <p className="max-w-xl">
           This tool uses{" "}
@@ -70,10 +70,10 @@ export default function Home() {
           worker on your browser.
         </p>
 
-        <div className="grid lg:grid-cols-2 rounded border min-h-[50vh]">
+        <div className="grid rounded border lg:grid-cols-2 min-h-[50vh]">
           <div>
-            <div className="py-4 px-8 grid gap-y-8">
-              <div className="flex flex-wrap items-center gap-4">
+            <div className="grid gap-y-8 py-4 px-8">
+              <div className="flex flex-wrap gap-4 items-center">
                 <label
                   className="text-base font-medium whitespace-nowrap"
                   htmlFor="file"
@@ -115,9 +115,9 @@ export default function Home() {
                     progress * 100
                   )}%`}</span>
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-900 rounded-full h-2.5">
+                <div className="w-full h-2.5 bg-gray-200 rounded-full dark:bg-gray-900">
                   <div
-                    className="bg-gray-600 dark:bg-gray-400 h-2.5 rounded-full"
+                    className="h-2.5 bg-gray-600 rounded-full dark:bg-gray-400"
                     style={{ width: `${Math.ceil(progress * 100)}%` }}
                   ></div>
                 </div>
@@ -126,13 +126,13 @@ export default function Home() {
                 <div className="relative">
                   {(tesseractStatus === "working" ||
                     tesseractStatus === "setup") && (
-                    <div className="absolute inset-0 flex justify-center items-center bg-white dark:bg-gray-400 bg-opacity-50 dark:bg-opacity-50">
+                    <div className="flex absolute inset-0 justify-center items-center bg-white bg-opacity-50 dark:bg-gray-400 dark:bg-opacity-50">
                       <span
-                        className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-gray-500"
+                        className="inline-flex items-center py-2 px-4 text-sm font-semibold leading-6 text-white bg-gray-500 rounded-md shadow"
                         disabled=""
                       >
                         <svg
-                          className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                          className="mr-3 -ml-1 w-5 h-5 text-white animate-spin"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -168,15 +168,15 @@ export default function Home() {
             className={`py-4 px-8 bg-gray-100 dark:bg-gray-700 border-gray-200 rounded whitespace-pre-line`}
           >
             {text && (
-              <h3 className="font-medium text-xl mb-6">Recognized Text</h3>
+              <h3 className="mb-6 text-xl font-medium">Recognized Text</h3>
             )}
             {(tesseractStatus === "working" || tesseractStatus === "setup") && (
-              <h3 className="font-medium text-xl mb-6 animate-pulse">
+              <h3 className="mb-6 text-xl font-medium animate-pulse">
                 Processing...
               </h3>
             )}
             {!text && !uploadedFile && (
-              <h3 className="font-medium text-xl mb-6">
+              <h3 className="mb-6 text-xl font-medium">
                 Select an image to view the OCR text
               </h3>
             )}
@@ -184,7 +184,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <footer className="mx-auto py-12 px-4 lg:px-8 flex flex-wrap gap-x-8 gap-y-2 justify-between text-sm">
+      <footer className="flex flex-wrap gap-y-2 gap-x-8 justify-between py-12 px-4 mx-auto text-sm lg:px-8">
         <p>
           &copy; {new Date().getFullYear()}
           {` `}
