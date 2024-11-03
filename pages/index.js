@@ -68,7 +68,7 @@ export default function Home() {
 
         <meta
           property="og:image"
-          content="https://ocr.michaelbonner.dev/og-image.jpg"
+          content="https://ocr.michaelbonner.dev/og-image.png"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
