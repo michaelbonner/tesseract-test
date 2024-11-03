@@ -63,6 +63,16 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="color-scheme" content="light only" />
         <meta name="theme-color" content="#1F2937" />
+
+        <meta name="robots" content="index, follow" />
+
+        <meta
+          property="og:image"
+          content="https://ocr.michaelbonner.dev/og-image.jpg"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="OCR Tool using Tesseract.js" />
       </Head>
 
       <main className="grid gap-y-8 py-12 px-4 mx-auto lg:px-8">
