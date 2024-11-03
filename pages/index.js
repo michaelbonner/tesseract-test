@@ -59,6 +59,10 @@ export default function Home() {
           content="OCR tool using Tesseract.js created by Michael Bonner"
         />
         <meta name="canonical" href="https://ocr.michaelbonner.dev/" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="color-scheme" content="light only" />
+        <meta name="theme-color" content="#1F2937" />
       </Head>
 
       <main className="grid gap-y-8 py-12 px-4 mx-auto lg:px-8">
