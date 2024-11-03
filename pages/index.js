@@ -53,6 +53,11 @@ export default function Home() {
         <title>OCR | Michael Bonner</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/png" href="/favicon.png" />
+
+        <meta
+          name="description"
+          content="OCR tool using Tesseract.js created by Michael Bonner"
+        />
       </Head>
 
       <main className="grid gap-y-8 py-12 px-4 mx-auto lg:px-8">
