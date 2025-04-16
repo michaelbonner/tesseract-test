@@ -73,6 +73,8 @@ export default function Home() {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="OCR Tool using Tesseract.js" />
+        <meta property="og:title" content="OCR Tool using Tesseract.js" />
+        <meta property="og:url" content="https://ocr.michaelbonner.dev/" />
       </Head>
 
       <main className="grid gap-y-8 py-12 px-4 mx-auto lg:px-8">
